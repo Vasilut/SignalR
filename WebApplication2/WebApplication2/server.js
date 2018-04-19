@@ -115,7 +115,7 @@
         return proxies;
     };
 
-    signalR.hub = $.hubConnection("http://localhost:44251/", { useDefaultPath: false });
+    signalR.hub = $.hubConnection("/signalr", { useDefaultPath: false });
     $.extend(signalR, signalR.hub.createHubProxies());
 
 }(window.jQuery, window));

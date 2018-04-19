@@ -113,6 +113,7 @@
   <ItemGroup>
     <Content Include="chat.html" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\chatlucianapp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="monitor.html" />
     <Content Include="Scripts\bootstrap.js" />
