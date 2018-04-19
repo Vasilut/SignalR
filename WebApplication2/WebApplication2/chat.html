@@ -7,30 +7,43 @@
     <!--<script src="Scripts/json2.js" type="text/javascript"></script>-->
     <script src="Scripts/jquery-1.10.2.js" type="text/javascript">></script>
     <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="signalr/hubs"></script>
 
     <script type="text/javascript">
+         var chat;
 
-        $(function () {
+            $(function () {
+                $.connection.hub.logging = true;
 
-        });
+                chat = $.connection.chat;
+                chat.client.newMessage = onNewMessage;
 
-        function onNewMessage(message) {
+                $('#join').click(onJoin);
+                $('#send').click(onSend);
+                $('#sendprivate').click(onSendPrivate);
 
-        };
+                $.connection.hub.start({ transport: 'longPolling' });
+            });
 
-        function onJoin() {
+            function onNewMessage(message) {
+                // ... todo: validation !!!! :)
+                $('#messages').append('<li>' + message + '</li>');
+            };
 
-        };
-        function onSend() {
+            function onJoin() {
+                chat.server.joinRoom($('#room').val());
+            };
+            function onSend() {
+                chat.server.sendMessage($('#message').val());
+            };
+            function onSendPrivate() {
+                chat.server.sendMessageToRoom($('#room').val(), $('#message').val());
+            };
 
-        };
-        function onSendPrivate() {
-
-        };
-
-        $.connection.hub.error(function (err) {
-            alert("An error occured: " + err);
-        });
+            $.connection.hub.error(function (err) {
+                alert("An error occured: " + err);
+            });
     </script>
 </head>
 <body>

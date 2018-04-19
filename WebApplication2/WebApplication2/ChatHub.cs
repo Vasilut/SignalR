@@ -13,8 +13,8 @@ namespace WebApplication2
     {
         public void SendMessage(string message)
         {
-            Clients.Caller.newMessage(message); //just me send message
-            Clients.Client(Context.ConnectionId).newMessage(message); //just me send message
+            //Clients.Caller.newMessage(message); //just me send message
+           //Clients.Client(Context.ConnectionId).newMessage(message); //just me send message
 
 
             Clients.All.newMessage(message);
